@@ -34,3 +34,15 @@ def count_sort_dict(a):
     for k in range(min(c), max(c) + 1):
         b.extend(c[k])
     return b
+
+
+# Quick Sort
+def quick_sort_cache(seq):
+    if len(seq) < 2:
+        return seq
+    ipivot = len(seq)
+    pivot  = seq[ipivot]
+
+    before = [x for i, x in enumerate(seq) if x <= pivot and i != ipivot]
+    after  = [x for i, x in enumerate(seq) if x > pivot and i != ipivot]
+    return quick_sort_cache(before) + [pivot] + quick_sort_cache(after)
