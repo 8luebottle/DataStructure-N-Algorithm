@@ -24,3 +24,13 @@ def gnome_sort(seq):
             seq[i], seq[i-1] = seq[i-1], seq[i]
             i -= 1
     return seq
+
+
+#Count Sort
+def count_sort_dict(a):
+    b, c = [], defaultdict(list)
+    for x in a:
+        c[x].append(x)
+    for k in range(min(c), max(c) + 1):
+        b.extend(c[k])
+    return b
