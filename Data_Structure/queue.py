@@ -21,13 +21,13 @@ class Item:
         return "Item({0!r})".format(self.name)
 
     def test_priority_queue():
-        """Push와 pop은 모두 0(logN)이다."""
+        # Push와 pop --> (logN)
         q = PriorityQueue()
         q.push(Item('test1'), 1)
         q.push(Item('test2'), 4)
         q.push(Item('test3'), 3)
         assert(str(q.pop()) == "Item('test2')")
-        print('테스트 통과!')
+        print('Passed the Test')
 
     if __name__ == "__main__":
         test_priority_queue()
