@@ -1,4 +1,5 @@
 #BT Lists
+
 def BinaryTreeList(r):
     return [r, [], []]
 
