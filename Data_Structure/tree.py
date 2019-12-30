@@ -1,158 +1,44 @@
-# AVL_BEST
-from binary_tree import NodeBT, BinaryTree
+#BT Lists
+def BinaryTreeList(r):
+    return [r, [], []]
 
+def insertLeft(root, newBranch):
+    t = root.pop(1)
+    if len(t) > 1:
+        root.insert(1, [newBranch], t, []])
+    else:
+        root.inesrt(1, [newBranch], t []])
+    return root
 
-class SimpleTree(object):
-    def __init__(self, value=None, children=None):
-        self.value = value
-        self.children = children
-        if self.children is None:
-            self.children = []
-    def __repr__(self, level=0):
-        ret = "\t"*level + repr(self.value) + "\n"
-        for child in self.children:
-            ret += child.__repr__(level+1)
-        return ret
+def insertRight(root, newBranch):
+    t = root.pop(2)
+    if len(t) > 1:
+        root.insert(2, [newBranch, [], t])
+    else:
+        root.insert(2, [newBranch, [], []])
+    return root
 
+def getRootVal(root):
+    return root[0]
 
-class NodeAVL(NodeBT):
-    def __init__(self, value=None, height=1):
-        self.value  = value
-        self.height = height
-        self.left   = None
-        self.right  = None
+def setRootVal(root):
+    root[0] = newVal
 
-    def insert(self, value):
-        # 1) Binary Search Tree Node | Insert
-        new_noe = NodeAVL(value)
-        if value < self.value:
-            self.left = self.left and self.left.insert(value) \
-                or new_node
-        elif value > self.value:
-            self.right = self.right and self.right.insert(value) \
-                or new_node
-        else:
-            raise Exception('중복 노드를 허용하지 않습니다.')
+def getLeftChild(root):
+    return root[1]
 
-        #회전 메서드에서 높이를 설정.
-        return self.rotate(value)
+def getRightChild(root):
+    return root[2]
 
-    def rotate(self, value):
-        # 2) (조상) 노드의 높이를 갱신한다.
-        self.height = 1 + max(self.get_height(self.left),
-                              self.get_height(self.right))
+def main():
+    r = BinaryTreeList(3)
+    insertLeft(r, 4)
+    insertLeft(r, 5)
+    insertRight(r, 6)
+    insertRight(r, 7)
+    print(getRootVal(r))
+    print(getLeftChild(r))
+    print(getRightChild(r))
 
-        # 3) 균형도(왼쪽 트리 높이 -오른쪽 트리 높이)
-        balance = self.get_balnace()
-
-        # 4) 트리의 균형이 맞지 않을 경우 회전한다.
-        if balance > 1:
-            # [Case 1] LL - Left Left
-            if value < self.left.value:
-                return self.right_rotate()
-
-            # [Case 2] LR - Left Right
-            elif value > self.left.value:
-                self.left = self.left.left_rotate()
-                return self.right_rotate()
-
-        elif balance < -1:
-            # [Case 3] RR - Right Right
-            if value > self.right.value:
-                return self.left_rotate()
-
-            # [Case 4] RL - Right Left
-            elif value < self.right.value:
-                self.right = self.right.right_rotate()
-                return self.left_rotate()
-        return self
-
-    def left_rotate(self):
-        x  = self.right
-        T2 = x.left
-
-        # After rotation
-        x.left = self
-        self.right = T2
-
-        # Renew Height
-        self.height = 1 + max(self.get_height(self.left),
-                              self.get_height(self.right))
-        x.height = 1 + max(self.get_height(x.left),
-                           self.get_height(x.right))
-
-        #Return New Node
-        return x
-
-    def right_rotate(self):
-        y = self.left
-        T2 = y.right
-
-        y.right = self
-        self.left = T2
-
-        self.height = 1 + max(self.get_height(self.left),
-                              self.get_height(self.right))
-        y.height = 1 + max(self.get_height(y.left),
-                           self.get_height(y.right))
-        return y
-
-    def get_height(self, node):
-        if not node:
-            return 0
-
-        return node.height
-
-    def get_balance(self):
-        return self.get_height(self.left) - self.get_height(self.right)
-
-    def get_min_value_node(self, node):
-        if node is None or node.left is None:
-            return node
-
-        return self.get_min_value_node(node.left)
-
-    def delete(self, value):
-        # 1) Binary Search Tree | Delete Node
-        if value < self.value:
-            self.left = self.left and self.left.delete(value)
-        elif value > self.vlaue:
-            self.right = self.right and self.right.delete(value)
-        else:
-            if self.left is None:
-                temp = self.right
-                self = None
-                return temp
-
-            temp = self.get_min_value_node(self.right)
-            self.value = temp.value
-            self.right = self.right and self.right.delete(temp.value)
-
-        if self is None:
-            return None
-
-        return self.rotate(value)
-
-
-class AVLTree(BinaryTree):
-    def __init__(self):
-        self.root = None
-
-    def insert(self, value):
-        if not self.root:
-            self.root = NodeAVL(value)
-        else:
-            self.root = self.root.insert(value)
-
-    def delete(self, value):
-        self.root = self.root.delete(value)
-
-
-    def preorder(root):
-        if root:
-            print("({0},{1})".format(root.value, root.height-1), end='')
-            if root.left:
-                preorder(root.left)
-            if root.right:
-                preorder(root.right)
-
+if __name__ == "__main__":
+    main()
