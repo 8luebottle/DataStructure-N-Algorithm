@@ -4,6 +4,9 @@ Selection Sort
 Insertion Sort
 Bubble Sort
 Gnome Sort
+Count Sort
+Quick Sort
+Heap Sort
 """
 
 # Selection Sort
@@ -82,3 +85,27 @@ def quick_sort_cache(seq):
     before = [x for i, x in enumerate(seq) if x <= pivot and i != ipivot]
     after  = [x for i, x in enumerate(seq) if x > pivot and i != ipivot]
     return quick_sort_cache(before) + [pivot] + quick_sort_cache(after)
+
+
+# Heap Sort : Without Using Module
+def heap_sort(seq):
+    for start in range((len(seq)-2)//2, -1, -1):
+        siftdown(seq, start, len(seq)-1)
+    for end in range(len(seq)-1, 0, -1):
+        seq[end], seq[0] = seq[0], seq[end]
+        siftdown(seq, 0, end-1)
+    return seq
+
+def siftdown(seq, start, end):
+    root = start
+    while True:
+        child = root * 2 + 1
+        if child > end:
+            break
+        if child + 1 <= end and seq[child] < seq[child + 1]:
+            child += 1
+        if seq[root] < seq[child]:
+            seq[root], seq[child] = seq[child], seq[root]
+            root = child
+        else:
+            break
