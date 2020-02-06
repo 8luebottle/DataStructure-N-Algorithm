@@ -50,6 +50,19 @@ func insertionSort(items []int) {
 	}
 }
 
+// Selection Sort
+func selectionSort(items []int) {
+	var n = len(items)
+	for i := 0; i < n; i++ {
+		var minIdx = i
+		for j := i; j < n; j++ {
+			if items[j] < items[minIdx] {
+				minIdx = j
+			}
+		}
+		items[i], items[minIdx] = items[minIdx], items[i]
+	}
+}
 func main() {
 	// Testing Bubble Sort
 	slice := generateSlice(30)
@@ -57,9 +70,15 @@ func main() {
 	bubbleSort(slice)
 	fmt.Println("After Bubble Sort : \n", slice, "\n")
 
-	// Testing insertionSort
+	// Testing Insertion Sort
 	sliceI := generateSlice(20)
 	fmt.Println("Before Insertion Sort: \n", sliceI, "\n")
 	insertionSort(sliceI)
 	fmt.Println("After Insertion Sort: \n", sliceI, "\n")
+
+	// Testing Selection Sort
+	sliceS := generateSlice(10)
+	fmt.Println("Before Selection Sort: \n", sliceS, "\n")
+	selectionSort(sliceS)
+	fmt.Println("After Selection Sort: \n", sliceS, "\n")
 }
