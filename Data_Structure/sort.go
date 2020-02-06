@@ -36,10 +36,30 @@ func bubbleSort(items []int) {
 	}
 }
 
+// Insertion Sort
+func insertionSort(items []int) {
+	var n = len(items)
+	for i := 1; i < n; i++ {
+		j := i
+		for j > 0 {
+			if items[j-1] > items[j] {
+				items[j-1], items[j] = items[j], items[j-1]
+			}
+			j = j - 1
+		}
+	}
+}
+
 func main() {
 	// Testing Bubble Sort
 	slice := generateSlice(30)
 	fmt.Println("Before Bubble Sort : \n", slice, "\n")
 	bubbleSort(slice)
 	fmt.Println("After Bubble Sort : \n", slice, "\n")
+
+	// Testing insertionSort
+	sliceI := generateSlice(20)
+	fmt.Println("Before Insertion Sort: \n", sliceI, "\n")
+	insertionSort(sliceI)
+	fmt.Println("After Insertion Sort: \n", sliceI, "\n")
 }
