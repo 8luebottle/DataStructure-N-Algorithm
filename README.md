@@ -1,5 +1,7 @@
 # DataStructure-N-Algorithm
-![Made with love by 8luebottle](https://img.shields.io/badge/Made%20with%20%E2%9D%A4%EF%B8%8Fby-%208luebottle%20-blue)  
+![Made with love by 8luebottle](https://img.shields.io/badge/Made%20with%20%E2%9D%A4%EF%B8%8Fby-%208luebottle%20-blue) &nbsp;
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2F8luebottle%2FDataStructure-N-Algorithm)](https://hits.seeyoufarm.com)
+
 ## Programming Languages
 + Go
 + Python
